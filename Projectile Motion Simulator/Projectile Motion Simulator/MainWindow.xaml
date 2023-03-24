@@ -17,7 +17,7 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="17*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Початкова швидкість v0 м/с" Margin="10,10,30,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Початкова швидкість v0 м/с" Margin="10,10,10,0" VerticalAlignment="Top" Height="29"/>
         <TextBox x:Name="v0TextBox" Margin="10,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60" MinWidth="11"/>
         <Label Content="Кут запуску θ °" Margin="10,67,9,0" VerticalAlignment="Top" Height="29"/>
         <TextBox x:Name="angleTextBox" Margin="10,101,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60"/>

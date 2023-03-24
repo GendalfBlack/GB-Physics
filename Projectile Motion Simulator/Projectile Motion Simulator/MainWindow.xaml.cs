@@ -27,17 +27,28 @@ namespace Projectile_Motion_Simulator
         }
 
         DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer plotTimer = new DispatcherTimer();
         double t, x, y0, v0, theta, vx, vy, g, maxHeight, maxDistance;
-
+        Polyline trajectoryPlot = new Polyline();
+        PointCollection points = new PointCollection();
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            plotTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            plotTimer.Tick += new EventHandler(plotTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Tick += new EventHandler(timer_Tick);
+            trajectoryPlot.Stroke = System.Windows.Media.Brushes.Black;
+            trajectoryPlot.StrokeThickness = 2;
+            trajectoryPlot.StrokeDashArray = new DoubleCollection() { 4, 4 };
+            mainCanvas.Children.Add(trajectoryPlot);
             Setup();
         }
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             if (timer.IsEnabled) { timer.Stop(); }
             else { timer.Start(); }
+            if (plotTimer.IsEnabled) { plotTimer.Stop(); }
+            else { plotTimer.Start(); }
         }
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
@@ -58,6 +69,7 @@ namespace Projectile_Motion_Simulator
                 else { Canvas.SetTop(ProjectileEllipse, y0); }
                 Canvas.SetLeft(ProjectileEllipse, 0);
             }
+            trajectoryPlot.Points.Clear();
         }
         private void Setup()
         {
@@ -76,8 +88,15 @@ namespace Projectile_Motion_Simulator
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             Setup();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Start();
+            plotTimer.Start();
+        }
+        private void plotTimer_Tick(object sender, EventArgs e)
+        {
+            var p = ProjectileEllipse;
+            double x = (double)p.GetValue(Canvas.LeftProperty);
+            double y = (double)p.GetValue(Canvas.TopProperty);
+            trajectoryPlot.Points.Add(new Point(x, y));
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -89,7 +108,7 @@ namespace Projectile_Motion_Simulator
             y0 = (double)p.GetValue(Canvas.TopProperty);
             Canvas.SetLeft(p, x + vx * dt);
             Canvas.SetTop(p, y0 + vy * dt);
-            if (y0 >= mainCanvas.ActualHeight - p.ActualHeight){timer.Stop();}
+            if (y0 >= mainCanvas.ActualHeight - p.ActualHeight){timer.Stop(); plotTimer.Stop(); }
             UpdateStatusBar();
         }
         private void UpdateStatusBar()
