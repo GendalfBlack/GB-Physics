@@ -1,0 +1,44 @@
+﻿<Window x:Class="Projectile_Motion_Simulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projectile_Motion_Simulator"
+        mc:Ignorable="d"
+        Title="Симулятор руху снаряду" Height="450" Width="900
+        " MinWidth="900" MinHeight="450">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="193*"/>
+            <RowDefinition Height="24*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="17*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Початкова швидкість v0 м/с" Margin="10,10,30,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="v0TextBox" Margin="10,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60" MinWidth="11"/>
+        <Label Content="Кут запуску θ °" Margin="10,67,9,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="angleTextBox" Margin="10,101,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60"/>
+        <Label Content="Початкова висота y0 м" Margin="10,124,10,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="y0TextBox" Margin="10,158,9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="1" TextChanged="y0TextBox_TextInput"/>
+        <Label Content="Прискорення гравітації g м*с²" VerticalAlignment="Top" Height="29" Margin="10,181,9,0"/>
+        <TextBox x:Name="gravityTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,217,9,0" Height="18" Text="9,78"/>
+        <Canvas x:Name="mainCanvas" Margin="10,10,10,10" Height="NaN" Width="NaN" Grid.Column="1" Background="#FFF9F9F9">
+            <Ellipse x:Name="ProjectileEllipse" Height="5" Stroke="Black" Canvas.Top="334" Width="5" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10"/>
+        </Canvas>
+        <Button x:Name="StartButton" Content="Розпочати симуляцію" Margin="19,24,19,0" VerticalAlignment="Top" Height="28" Grid.Column="2" Click="Start_Click"/>
+        <Button x:Name="PauseButton" Content="Пауза" Margin="19,63,19,0" VerticalAlignment="Top" Height="28" Grid.Column="2" Click="Pause_Click"/>
+        <Button x:Name="ResetButton" Content="Перезапустити" Margin="19,102,19,0" VerticalAlignment="Top" Height="28" Grid.Column="2" Click="Reset_Click"/>
+        <StatusBar Grid.ColumnSpan="3" Margin="0,5,0,0" Width="NaN" Height="NaN" Grid.Row="1">
+            <Label x:Name="positionLabel" Content="Позиція снаряду: " MinWidth="150"/>
+            <Label x:Name="velocityLabel" Content="Швидкість снаряду:" MinWidth="180"/>
+            <Label x:Name="timeLabel" Content="Час польоту:" MinWidth="120"/>
+            <Label x:Name="maxHeightLabel" Content="Максимальна висота: " MinWidth="180"/>
+            <Label x:Name="maxDistanceLabel" Content="Максимальна дальність: " MinWidth="180"/>
+        </StatusBar>
+
+
+    </Grid>
+</Window>
