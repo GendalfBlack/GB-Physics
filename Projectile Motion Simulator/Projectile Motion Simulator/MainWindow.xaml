@@ -17,13 +17,13 @@
             <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="17*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Початкова швидкість v0 м/с" Margin="10,10,10,0" VerticalAlignment="Top" Height="29"/>
-        <TextBox x:Name="v0TextBox" Margin="10,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60" MinWidth="11"/>
-        <Label Content="Кут запуску θ °" Margin="10,67,9,0" VerticalAlignment="Top" Height="29"/>
-        <TextBox x:Name="angleTextBox" Margin="10,101,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60"/>
-        <Label Content="Початкова висота y0 м" Margin="10,124,10,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Початкова швидкість v0 (м/с)" Margin="10,10,10,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="v0TextBox" Margin="10,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60" MinWidth="11" TextChanged="v0TextBox_TextChanged" InputScope="Default"/>
+        <Label Content="Кут запуску θ (°)" Margin="10,67,9,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="angleTextBox" Margin="10,101,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="60" TextChanged="angleTextBox_TextChanged"/>
+        <Label Content="Початкова висота y0 (м)" Margin="10,124,10,0" VerticalAlignment="Top" Height="29"/>
         <TextBox x:Name="y0TextBox" Margin="10,158,9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Text="1" TextChanged="y0TextBox_TextInput"/>
-        <Label Content="Прискорення гравітації g м*с²" VerticalAlignment="Top" Height="29" Margin="10,181,9,0"/>
+        <Label Content="Прискорення гравітації g (м*с²)" VerticalAlignment="Top" Height="29" Margin="10,181,9,0"/>
         <TextBox x:Name="gravityTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,217,9,0" Height="18" Text="9,78"/>
         <Canvas x:Name="mainCanvas" Margin="10,10,10,10" Height="NaN" Width="NaN" Grid.Column="1" Background="#FFF9F9F9">
             <Ellipse x:Name="ProjectileEllipse" Height="5" Stroke="Black" Canvas.Top="334" Width="5" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10"/>
